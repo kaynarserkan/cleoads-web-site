@@ -3,11 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Statik Web Sitem</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Satranç Hero Section</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>Merhaba Dünya!</h1>
-  <p>Bu benim ilk statik web sitem.</p>
+<body class="bg-gray-900 text-white">
+
+  <!-- Üst Menü (Fixed) -->
+  <header class="fixed top-0 left-0 w-full bg-gray-800 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <img src="img/logo.svg" alt="Logo" class="h-10 w-10"/>
+      </div>
+      <!-- Menü -->
+      <div class="flex space-x-4">
+        <button class="border border-gray-400 rounded-full px-4 py-1 text-sm hover:bg-gray-700 transition">Ücretsiz Danışmanlık Al</button>
+        <button class="border border-gray-400 rounded-full px-4 py-1 text-sm hover:bg-gray-700 transition">Teklif Al</button>
+        <button class="text-gray-400 text-xl">&#9776;</button> <!-- Hamburger menü -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative flex items-center justify-center min-h-screen text-center bg-center bg-cover bg-no-repeat bg-[linear-gradient(to_bottom,rgba(31,41,55,0.7),rgba(17,24,39,0.7)),url('img/header.jpg')] pt-24">
+    <!-- Arka Plan Deseni -->
+    <div class="absolute inset-0 bg-[url('https://via.placeholder.com/1200x800/2c2c2c/ffffff?text=Satranç+Zemini')] bg-cover opacity-10"></div>
+
+    <!-- İçerik -->
+    <div class="relative z-10">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+        OYUNA <br class="hidden md:block"/> HAZIR MISIN?
+      </h1>
+      <p class="text-gray-300 mb-6">Rakip takımı mat etmek için tek bir hamlen var.<br/>Hamleni yap ve başarıya ulaş!</p>
+      <button class="bg-[#f15a22] hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full transition">
+        Hamleni Yap ve Oyunu Kazan
+      </button>
+    </div>
+
+    <!-- Satranç taşları görseli -->
+    <div class="absolute inset-0 flex items-center justify-center">
+      <img src="https://via.placeholder.com/150x150?text=Taşlar" alt="Satranç Taşları" class="w-48 md:w-64"/>
+    </div>
+  </section>
+
 </body>
 </html>
