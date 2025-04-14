@@ -1,0 +1,4 @@
+{ "tailwindConfig": "./tailwind.config.js",
+"printWidth": 200,
+"htmlWhitespaceSensitivity": "ignore",
+"wrapAttributes": "auto" } 
