@@ -1,50 +1,156 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Satranç Hero Section</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-900 text-white">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="./dist/output.css" rel="stylesheet" />
 
-  <!-- Üst Menü (Fixed) -->
-  <header class="fixed top-0 left-0 w-full bg-gray-800 z-50">
-    <div class="container mx-auto flex justify-between items-center py-4 px-6">
-      <!-- Logo -->
-      <div class="flex items-center space-x-2">
-        <img src="img/logo.svg" alt="Logo" class="h-10 w-10"/>
+    <!-- Swiper.js CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Ses efekti -->
+    <audio id="moveSound" src="./sound/move.mp3" preload="auto"></audio>
+  </head>
+  <body class="m-0">
+    <section class="w-full h-screen flex justify-center items-start bg-[url('../img/bg.jpg')] bg-cover shadow-md overflow-hidden" id="scene">
+      <div class="text-center text-white pt-[9.94em]">
+        <h1 class="text-white font-gotham text-[8vw] leading-[7.8vw] font-bold not-italic pb-[8vw]">
+          OYUNA
+          <br />
+          HAZIR MISIN?
+        </h1>
+        <p class="text-white font-gotham text-[1rem] font-medium not-italic leading-normal">
+          Rakip takımı mat etmek için tek bir hamlen var.
+          <br />
+          Hamleni yap ve başarıya ulaş!
+        </p>
+        <button
+          class="w-80 h-16 px-6 py-7 mt-7 bg-orange-600 rounded-[100px] outline outline-1 outline-offset-[-1px] outline-orange-600 inline-flex justify-center items-center gap-2.5 hover:bg-orange-700"
+        >
+          <span class="text-center justify-start text-white text-base font-medium font-['Gotham'] leading-normal">Hamleni Yap ve Oyunu Kazan</span>
+        </button>
       </div>
-      <!-- Menü -->
-      <div class="flex space-x-4">
-        <button class="border border-gray-400 rounded-full px-4 py-1 text-sm hover:bg-gray-700 transition">Ücretsiz Danışmanlık Al</button>
-        <button class="border border-gray-400 rounded-full px-4 py-1 text-sm hover:bg-gray-700 transition">Teklif Al</button>
-        <button class="text-gray-400 text-xl">&#9776;</button> <!-- Hamburger menü -->
+    </section>
+
+    <section class="relative w-full h-screen">
+      <!-- Carousel -->
+      <div class="w-1/2 h-screen absolute right-0 top-0 bg-black flex items-center justify-center absolute">
+        <div class="swiper mySwiper w-3/4 h-3/4">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-sah.png" alt="Beyaz Sah" class="w-24 h-24" /></div>
+            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-vezir.png" alt="Beyaz Vezir" class="w-24 h-24" /></div>
+            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-at.png" alt="Beyaz At" class="w-24 h-24" /></div>
+            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-kale.png" alt="Beyaz Kale" class="w-24 h-24" /></div>
+            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-fil.png" alt="Beyaz Fil" class="w-24 h-24" /></div>
+            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-piyon.png" alt="Beyaz Piyon" class="w-24 h-24" /></div>
+          </div>
+          <div class="swiper-button-next text-white"></div>
+          <div class="swiper-button-prev text-white"></div>
+        </div>
       </div>
-    </div>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="relative flex items-center justify-center min-h-screen text-center bg-center bg-cover bg-no-repeat bg-[linear-gradient(to_bottom,rgba(31,41,55,0.7),rgba(17,24,39,0.7)),url('img/header.jpg')] pt-24">
-    <!-- Arka Plan Deseni -->
-    <div class="absolute inset-0 bg-[url('https://via.placeholder.com/1200x800/2c2c2c/ffffff?text=Satranç+Zemini')] bg-cover opacity-10"></div>
+      <!-- Satranç Tahtası -->
+      <div class="w-1/2 h-screen absolute left-0 top-0 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_#D3D3D3_0%,_#EFEFEF_100%)] flex items-center justify-center">
+        <div class="relative w-[512px] h-[512px]" id="chessboard"></div>
+      </div>
+    </section>
 
-    <!-- İçerik -->
-    <div class="relative z-10">
-      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-        OYUNA <br class="hidden md:block"/> HAZIR MISIN?
-      </h1>
-      <p class="text-gray-300 mb-6">Rakip takımı mat etmek için tek bir hamlen var.<br/>Hamleni yap ve başarıya ulaş!</p>
-      <button class="bg-[#f15a22] hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full transition">
-        Hamleni Yap ve Oyunu Kazan
-      </button>
-    </div>
+    <script>
+      const board = document.getElementById("chessboard");
 
-    <!-- Satranç taşları görseli -->
-    <div class="absolute inset-0 flex items-center justify-center">
-      <img src="https://via.placeholder.com/150x150?text=Taşlar" alt="Satranç Taşları" class="w-48 md:w-64"/>
-    </div>
-  </section>
+      // Dinamik olarak kareleri oluştur
+      for (let row = 8; row >= 1; row--) {
+        for (let col = 0; col < 8; col++) {
+          const square = document.createElement("div");
+          square.className = "absolute w-[12.5%] h-[12.5%]";
+          square.style.left = `${col * 12.5}%`;
+          square.style.top = `${(8 - row) * 12.5}%`;
+          square.style.backgroundColor = (row + col) % 2 === 0 ? "#ffffff" : "#000000";
+          board.appendChild(square);
+        }
+      }
 
-</body>
+      // Taşları ekle
+      const pieces = {
+        sah: createPiece("beyaz-sah.png", "e1"),
+        siyahSah: createPiece("siyah-sah.png", "g8"),
+        vezir: createPiece("beyaz-vezir.png", "f6"),
+        at: createPiece("beyaz-at.png", "d5"),
+        kale: createPiece("beyaz-kale.png", "c7"),
+        fil: createPiece("beyaz-fil.png", "f5"),
+        piyon: createPiece("beyaz-piyon.png", "h6"),
+      };
+
+      function createPiece(image, position) {
+        const img = document.createElement("img");
+        img.src = `./img/${image}`;
+        img.className = "absolute w-12 h-12";
+        board.appendChild(img);
+        moveTo(img, position, false);
+        return img;
+      }
+
+      function moveTo(piece, square, animate = true) {
+        const col = square.charCodeAt(0) - "a".charCodeAt(0);
+        const row = parseInt(square[1]) - 1;
+        const x = col * (512 / 8);
+        const y = (7 - row) * (512 / 8);
+
+        if (animate) {
+          document.getElementById("moveSound").play();
+          gsap.to(piece, {
+            duration: 1,
+            x,
+            y,
+            scale: 1.2,
+            boxShadow: "0 0 20px gold",
+            ease: "power2.out",
+            onComplete: () => {
+              gsap.to(piece, { scale: 1, boxShadow: "none" });
+            },
+          });
+        } else {
+          gsap.set(piece, { x, y });
+        }
+      }
+
+      // Carousel ve Hamleler
+      const moves = [
+        [],
+        [() => moveTo(pieces.vezir, "f7")],
+        [() => moveTo(pieces.vezir, "f6"), () => moveTo(pieces.at, "d7"), () => moveTo(pieces.at, "e7")],
+        [() => moveTo(pieces.at, "d7"), () => moveTo(pieces.at, "d5"), () => moveTo(pieces.kale, "c8")],
+        [() => moveTo(pieces.kale, "c7"), () => moveTo(pieces.fil, "h7")],
+        [() => moveTo(pieces.fil, "f5"), () => moveTo(pieces.piyon, "h7")],
+      ];
+
+      let activeIndex = 0;
+
+      const swiper = new Swiper(".mySwiper", {
+        direction: "horizontal",
+        loop: false,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        on: {
+          slideChange: function () {
+            const newIndex = this.activeIndex;
+
+            if (newIndex > activeIndex && moves[newIndex - 1]) {
+              moves[newIndex - 1].forEach((fn) => fn());
+            } else if (newIndex < activeIndex && moves[activeIndex - 1]) {
+              [...moves[activeIndex - 1]].reverse().forEach((fn) => fn());
+            }
+
+            activeIndex = newIndex;
+          },
+        },
+      });
+    </script>
+  </body>
 </html>

@@ -1,0 +1,29 @@
+{
+  "name": "cleoads",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "serve": "live-server",
+    "dev": "npm-run-all --parallel build serve",
+    "export": "npm run build:export && npm run clean:export && npm run copy:export",
+    "build:export": "tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "clean:export": "rmdir /S /Q D:\\cleoads-export && mkdir D:\\cleoads-export",
+    "copy:export": "xcopy index.html D:\\cleoads-export\\ /Y && xcopy dist D:\\cleoads-export\\dist /E /I /Y && xcopy img D:\\cleoads-export\\img /E /I /Y"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "live-server": "^1.2.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwindcss": "^3.4.17"
+  }
+}
