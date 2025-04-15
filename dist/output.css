@@ -572,6 +572,85 @@ html {
   }
 }
 
+.carousel-slide{
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.carousel-title{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(249 115 22 / var(--tw-text-opacity, 1));
+}
+
+.carousel-text{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 20rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity, 1));
+}
+
+.carousel-button{
+  border-radius: 9999px;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.carousel-button:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.custom-arrow{
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.custom-arrow:hover{
+  --tw-border-opacity: 1;
+  border-color: rgb(249 115 22 / var(--tw-border-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(249 115 22 / var(--tw-text-opacity, 1));
+}
+
 .absolute{
   position: absolute;
 }
@@ -584,12 +663,32 @@ html {
   left: 0px;
 }
 
+.left-4{
+  left: 1rem;
+}
+
 .right-0{
   right: 0px;
 }
 
+.right-4{
+  right: 1rem;
+}
+
 .top-0{
   top: 0px;
+}
+
+.top-1\/2{
+  top: 50%;
+}
+
+.top-6{
+  top: 1.5rem;
+}
+
+.z-20{
+  z-index: 20;
 }
 
 .m-0{
@@ -600,16 +699,16 @@ html {
   margin-top: 1.75rem;
 }
 
+.mt-8{
+  margin-top: 2rem;
+}
+
 .flex{
   display: flex;
 }
 
 .inline-flex{
   display: inline-flex;
-}
-
-.h-12{
-  height: 3rem;
 }
 
 .h-16{
@@ -620,10 +719,6 @@ html {
   height: 6rem;
 }
 
-.h-3\/4{
-  height: 75%;
-}
-
 .h-\[12\.5\%\]{
   height: 12.5%;
 }
@@ -632,24 +727,24 @@ html {
   height: 512px;
 }
 
+.h-\[70\%\]{
+  height: 70%;
+}
+
 .h-screen{
   height: 100vh;
+}
+
+.h-3{
+  height: 0.75rem;
 }
 
 .w-1\/2{
   width: 50%;
 }
 
-.w-12{
-  width: 3rem;
-}
-
 .w-24{
   width: 6rem;
-}
-
-.w-3\/4{
-  width: 75%;
 }
 
 .w-80{
@@ -666,6 +761,19 @@ html {
 
 .w-full{
   width: 100%;
+}
+
+.w-3{
+  width: 0.75rem;
+}
+
+.-translate-y-1\/2{
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.flex-col{
+  flex-direction: column;
 }
 
 .items-start{
@@ -686,6 +794,10 @@ html {
 
 .gap-2\.5{
   gap: 0.625rem;
+}
+
+.gap-4{
+  gap: 1rem;
 }
 
 .overflow-hidden{
@@ -761,12 +873,21 @@ html {
   line-height: 1.5rem;
 }
 
+.text-sm{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .font-bold{
   font-weight: 700;
 }
 
 .font-medium{
   font-weight: 500;
+}
+
+.uppercase{
+  text-transform: uppercase;
 }
 
 .not-italic{
@@ -779,6 +900,15 @@ html {
 
 .leading-normal{
   line-height: 1.5;
+}
+
+.tracking-wider{
+  letter-spacing: 0.05em;
+}
+
+.text-gray-400{
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
 }
 
 .text-white{
@@ -812,4 +942,3 @@ html {
   --tw-bg-opacity: 1;
   background-color: rgb(194 65 12 / var(--tw-bg-opacity, 1));
 }
-  

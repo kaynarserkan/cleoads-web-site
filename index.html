@@ -38,18 +38,63 @@
 
     <section class="relative w-full h-screen">
       <!-- Carousel -->
-      <div class="w-1/2 h-screen right-0 top-0 bg-black flex items-center justify-center absolute">
-        <div class="swiper mySwiper w-3/4 h-3/4">
+      <div class="w-1/2 h-screen right-0 top-0 bg-black absolute flex flex-col items-center justify-center">
+        <div class="absolute top-6 w-full text-center">
+          <p class="text-gray-400 text-sm tracking-wider uppercase">Hizmetlerimiz</p>
+        </div>
+
+        <!-- Carousel alanı -->
+        <div class="swiper mySwiper w-full h-[70%]">
           <div class="swiper-wrapper">
-            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-sah.png" alt="Beyaz Sah" class="w-24 h-24" /></div>
-            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-vezir.png" alt="Beyaz Vezir" class="w-24 h-24" /></div>
-            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-at.png" alt="Beyaz At" class="w-24 h-24" /></div>
-            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-kale.png" alt="Beyaz Kale" class="w-24 h-24" /></div>
-            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-fil.png" alt="Beyaz Fil" class="w-24 h-24" /></div>
-            <div class="swiper-slide flex items-center justify-center"><img src="./img/beyaz-piyon.png" alt="Beyaz Piyon" class="w-24 h-24" /></div>
+            <div class="swiper-slide carousel-slide">
+              <h3 class="carousel-title">Web Yazılım</h3>
+              <img src="./img/beyaz-sah.png" alt="Beyaz Şah" class="w-24 h-24 items-center justify-center" />
+              <p class="carousel-text">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+            <div class="swiper-slide carousel-slide">
+              <h3 class="carousel-title">Web Yazılım</h3>
+              <img src="./img/beyaz-vezir.png" alt="Beyaz Şah" class="w-24 h-24" />
+              <p class="carousel-text">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+            <div class="swiper-slide carousel-slide">
+              <h3 class="carousel-title">Web Yazılım</h3>
+              <img src="./img/beyaz-at.png" alt="Beyaz Şah" class="w-24 h-24" />
+              <p class="carousel-text">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+            <div class="swiper-slide carousel-slide">
+              <h3 class="carousel-title">Web Yazılım</h3>
+              <img src="./img/beyaz-kale.png" alt="Beyaz Şah" class="w-24 h-24" />
+              <p class="carousel-text">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+            <div class="swiper-slide carousel-slide">
+              <h3 class="carousel-title">Web Yazılım</h3>
+              <img src="./img/beyaz-fil.png" alt="Beyaz Şah" class="w-24 h-24" />
+              <p class="carousel-text">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+            <div class="swiper-slide carousel-slide">
+              <h3 class="carousel-title">Web Yazılım</h3>
+              <img src="./img/beyaz-piyon.png" alt="Beyaz Şah" class="w-24 h-24" />
+              <p class="carousel-text">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
           </div>
-          <div class="swiper-button-next text-white"></div>
-          <div class="swiper-button-prev text-white"></div>
+          <!-- Örnek içerik -->
+          <!-- Sol ok -->
+          <div class="swiper-button-prev custom-arrow">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </div>
+
+          <!-- Sağ ok -->
+          <div class="swiper-button-next custom-arrow">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="flex gap-4 mt-8">
+          <button class="carousel-button">Hemen Teklif Al</button>
+          <button class="carousel-button">Ücretsiz Danışmanlık Al</button>
         </div>
       </div>
 
@@ -61,20 +106,42 @@
 
     <script>
       const board = document.getElementById("chessboard");
+      const squares = [];
 
-      // Dinamik olarak kareleri oluştur
       for (let row = 8; row >= 1; row--) {
         for (let col = 0; col < 8; col++) {
           const square = document.createElement("div");
           square.className = "absolute w-[12.5%] h-[12.5%]";
           square.style.left = `${col * 12.5}%`;
           square.style.top = `${(8 - row) * 12.5}%`;
-          square.style.backgroundColor = (row + col) % 2 === 0 ? "#ffffff" : "#000000";
+          square.dataset.defaultColor = (row + col) % 2 === 0 ? "#ffffff" : "#777777";
+          square.style.backgroundColor = square.dataset.defaultColor;
           board.appendChild(square);
+          squares.push(square);
         }
       }
 
-      // Taşları ekle
+      function getSquareElement(squareId) {
+        const col = squareId.charCodeAt(0) - "a".charCodeAt(0);
+        const row = parseInt(squareId[1]) - 1;
+        const index = (7 - row) * 8 + col;
+        return squares[index];
+      }
+
+      function highlightSquares(squaresToHighlight) {
+        squaresToHighlight.forEach((sq) => {
+          const el = getSquareElement(sq);
+          el.style.backgroundColor = "#F15A22";
+        });
+      }
+
+      function resetSquares(squaresToReset) {
+        squaresToReset.forEach((sq) => {
+          const el = getSquareElement(sq);
+          el.style.backgroundColor = el.dataset.defaultColor;
+        });
+      }
+
       const pieces = {
         sah: createPiece("beyaz-sah.png", "e1"),
         siyahSah: createPiece("siyah-sah.png", "g8"),
@@ -88,7 +155,7 @@
       function createPiece(image, position) {
         const img = document.createElement("img");
         img.src = `./img/${image}`;
-        img.className = "absolute w-12 h-12";
+        img.className = "absolute w-[12.5%] h-[12.5%]";
         board.appendChild(img);
         moveTo(img, position, false);
         return img;
@@ -100,17 +167,21 @@
         const x = col * (512 / 8);
         const y = (7 - row) * (512 / 8);
 
+        try {
+          gsap.killTweensOf(piece);
+        } catch (e) {
+          console.warn("GSAP killTweensOf hatası:", e);
+        }
+
         if (animate) {
-          document.getElementById("moveSound").play();
           gsap.to(piece, {
-            duration: 1,
+            duration: 2,
             x,
             y,
-            scale: 1.2,
-            boxShadow: "0 0 20px gold",
+            scale: 0.9,
             ease: "power2.out",
             onComplete: () => {
-              gsap.to(piece, { scale: 1, boxShadow: "none" });
+              gsap.to(piece, { scale: 0.9 });
             },
           });
         } else {
@@ -118,14 +189,31 @@
         }
       }
 
-      // Carousel ve Hamleler
       const moves = [
-        [],
-        [() => moveTo(pieces.vezir, "f7")],
-        [() => moveTo(pieces.vezir, "f6"), () => moveTo(pieces.at, "d7"), () => moveTo(pieces.at, "e7")],
-        [() => moveTo(pieces.at, "d7"), () => moveTo(pieces.at, "d5"), () => moveTo(pieces.kale, "c8")],
-        [() => moveTo(pieces.kale, "c7"), () => moveTo(pieces.fil, "h7")],
-        [() => moveTo(pieces.fil, "f5"), () => moveTo(pieces.piyon, "h7")],
+        {
+          do: [],
+          undo: [],
+        },
+        {
+          do: [() => moveTo(pieces.vezir, "f6"), () => moveTo(pieces.vezir, "f7"), () => highlightSquares(["f6", "f7"])],
+          undo: [() => resetSquares(["f6", "f7"]), () => moveTo(pieces.vezir, "f6")],
+        },
+        {
+          do: [() => moveTo(pieces.at, "d7"), () => moveTo(pieces.at, "e7"), () => highlightSquares(["d5", "d6", "d7", "e7"])],
+          undo: [() => resetSquares(["d5", "d6", "d7", "e7"]), () => moveTo(pieces.at, "d7"), () => moveTo(pieces.at, "d5")],
+        },
+        {
+          do: [() => moveTo(pieces.kale, "c8"), () => highlightSquares(["c7", "c8"])],
+          undo: [() => resetSquares(["c7", "c8"]), () => moveTo(pieces.kale, "c7")],
+        },
+        {
+          do: [() => moveTo(pieces.fil, "h7"), () => highlightSquares(["f5", "g6", "h7"])],
+          undo: [() => resetSquares(["f5", "g6", "h7"]), () => moveTo(pieces.fil, "f5")],
+        },
+        {
+          do: [() => moveTo(pieces.piyon, "h7"), () => highlightSquares(["h6", "h7"])],
+          undo: [() => resetSquares(["h6", "h7"]), () => moveTo(pieces.piyon, "h6")],
+        },
       ];
 
       let activeIndex = 0;
@@ -141,10 +229,12 @@
           slideChange: function () {
             const newIndex = this.activeIndex;
 
-            if (newIndex > activeIndex && moves[newIndex - 1]) {
-              moves[newIndex - 1].forEach((fn) => fn());
-            } else if (newIndex < activeIndex && moves[activeIndex - 1]) {
-              [...moves[activeIndex - 1]].reverse().forEach((fn) => fn());
+            if (newIndex > activeIndex) {
+              moves[activeIndex]?.undo?.forEach((fn) => fn());
+              moves[newIndex]?.do?.forEach((fn) => fn());
+            } else if (newIndex < activeIndex) {
+              moves[activeIndex]?.undo?.forEach((fn) => fn());
+              moves[newIndex]?.do?.forEach((fn) => fn());
             }
 
             activeIndex = newIndex;
