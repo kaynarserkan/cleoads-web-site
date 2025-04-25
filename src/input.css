@@ -27,22 +27,50 @@
   }
 
   .carousel-title {
-    @apply text-orange-500 text-lg font-semibold;
+    @apply text-[#F15A22] text-center font-gotham text-[1.5rem] not-italic font-medium leading-[7.875rem];
   }
 
   .carousel-text {
-    @apply text-sm text-gray-300 max-w-xs text-center mx-auto;
+    @apply text-white text-center font-gotham text-base not-italic font-light leading-normal w-[22.25rem] h-[5.8125rem] shrink-0;
   }
 
   .carousel-button {
     @apply border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition-all text-white text-sm font-medium;
   }
 
-  .custom-arrow {
-    @apply w-10 h-10 rounded-full border border-white flex items-center justify-center text-white transition duration-300;
+  .swiper-button-next.custom-arrow,
+  .swiper-button-prev.custom-arrow {
+    @apply flex items-center justify-center;
+    width: 3.75rem !important;
+    height: 3.75rem !important;
+    padding: 1.6875rem 1.875rem !important;
+    gap: 0.625rem !important;
+    border-radius: 3.125rem !important;
+    border: 1px solid #393939 !important;
+    background-color: transparent !important;
+    color: white !important;
   }
 
-  .custom-arrow:hover {
-    @apply text-orange-500 border-orange-500;
+  .custom-arrow svg {
+    width: 0.84375rem !important;
+    height: 0.75rem !important;
+    stroke: white !important;
+    stroke-width: 1px !important;
+    flex-shrink: 0 !important;
+  }
+  .swiper-button-prev.custom-arrow {
+    @apply left-25;
+  }
+
+  .swiper-button-next.custom-arrow {
+    @apply right-25;
+  }
+  
+}
+@layer utilities {
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    content: none !important;
+    display: none !important;
   }
 }
